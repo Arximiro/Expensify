@@ -77,4 +77,3 @@ test('Should sort by amount', () => {
     wrapper.find('select').simulate('change', targetObject )
     expect(sortByAmount).toHaveBeenCalled();
 });
-
