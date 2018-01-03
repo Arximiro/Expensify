@@ -1,0 +1,30 @@
+html {
+    font-size: 62.5%;
+}
+// We define font size structure here. 1 rem is 16px. So 62.5% of 16 is 10, so doign this gives is a 10 based system. so 1.6rem is 16px etc.
+
+body {
+    background: black;
+    color: white;
+    font-family: Helvetica, Arial, sans-serif;  // This will go down the list from first to last. If one isn't available it goes to the next one.
+    font-size: $m-size;
+    padding-left: $xl-size;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default;
+}
+
+.is-active {
+    color: white;
+    font-weight: bold;
+    padding: $m-size;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+} // This allows for the arrow to appear on the date range picker.

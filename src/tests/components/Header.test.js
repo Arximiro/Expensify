@@ -1,0 +1,14 @@
+import React from 'react';
+import {shallow} from 'enzyme';
+import Header from '../../components/Header';
+
+// --- Jest Notes ---
+// Jest method toMatchSnapshop() allows you to compare the shallow render to a snapshot. 
+
+// --- Enzyme Notes ---
+// Enzyme method shallow() is used to shallow render the component.
+
+test('Should render Header correctly', () => {
+    const wrapper = shallow(<Header />);
+    expect(wrapper).toMatchSnapshot();
+});
