@@ -14,5 +14,3 @@ firebase.initializeApp(config);
 const database = firebase.database();
 
 export {firebase, database as default};
-
-//process.env.FIREBASE_DATABASE_URL

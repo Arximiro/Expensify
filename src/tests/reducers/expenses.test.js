@@ -1,4 +1,7 @@
 import moment from 'moment';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import database from '../../firebase/firebase';
 import expenses from '../fixtures/testExpenses';
 import expensesReducer from '../../reducers/expenses';
 
@@ -52,4 +55,10 @@ test('Should not edit expense in expesnes array using invalid id', () => {
     const actionObject = {type: 'EDIT_EXPENSE', id, updates};
     const state = expensesReducer(expenses, actionObject);
     expect(state).toEqual(expenses);
+});
+
+test('Should set expenses', () => {
+    const actionObject = {type: 'SET_EXPENSES', expenses: [expenses[2]]}
+    const state = expensesReducer(expenses, actionObject)
+    expect(state).toEqual([expenses[2]]);
 });

@@ -1,4 +1,4 @@
-const expensesReducerDefaultState = []
+const expensesReducerDefaultState = [];
 
 const expensesReducer = (state = expensesReducerDefaultState, action) => {
     switch (action.type) {
@@ -13,6 +13,8 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
             }
                 return expense;
            });
+        case 'SET_EXPENSES':
+           return action.expenses
         default: return state;
     }
 };
