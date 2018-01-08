@@ -8,12 +8,12 @@ import expenses from '../fixtures/testExpenses';
 // Since history is called in AddExpensePage as history.push(), when the spy is created it must be able to be called in the same manner.
 
 
-let addExpense, history, wrapper;
+let startAddExpense, history, wrapper;
 
 beforeEach(() => {    
-    addExpense = jest.fn();
+    startAddExpense = jest.fn();
     history = {push: jest.fn()};
-    wrapper = shallow(<AddExpensePage addExpense={addExpense} history={history} />)    
+    wrapper = shallow(<AddExpensePage startAddExpense={startAddExpense} history={history} />)    
 });
 
 test('Should render AddExpensePage', () => {        
@@ -24,5 +24,5 @@ test('Should handle onSubmit', () => {
     const expense = expenses[2];
     wrapper.find('ExpenseForm').prop('onSubmit')(expense);
     expect(history.push).toHaveBeenLastCalledWith('/');
-    expect(addExpense).toHaveBeenLastCalledWith(expense);    
+    expect(startAddExpense).toHaveBeenLastCalledWith(expense);    
 });

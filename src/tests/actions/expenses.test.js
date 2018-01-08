@@ -1,38 +1,74 @@
-import {addExpense, editExpense, removeExpense} from '../../actions/expenses';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import database from '../../firebase/firebase';
+import {addExpense, editExpense, removeExpense, startAddExpense} from '../../actions/expenses';
+import expenses from '../fixtures/testExpenses';
 
 // -- Jest Notes --
 // Jest method toEqual() is used to compare the properties of two objects.
 // Jest method expect.any() is used for return values that are not static.
 
+const createMockStore = configureMockStore([thunk]);
+
 test('Should setup add expense action object with provided values', () => {
-    const expenseData = {
-        description: 'Rent',
-        note: 'December Rent',
-        amount: 69000,
-        createdAt: 1000
-    };
-    const action = addExpense(expenseData);
+    const expense = expenses[0];
+    const action = addExpense(expense);
     expect(action).toEqual({
         type: 'ADD_EXPENSE',
-        expense: {
-            id: expect.any(String),
-            ...expenseData
-        }
+        expense
     });
 });
 
-test('Should setup add expense action object with default values', () => {
-    const action = addExpense();
-    expect(action).toEqual({
-        type: 'ADD_EXPENSE',
-        expense: {
-            id: expect.any(String),
-            description: '',
-            note: '',
-            amount: 0,
-            createdAt: 0
-        }
-    });
+test('Should add expense to database and store', (done) => {
+    const store = createMockStore({});
+    const expense = {
+        description: 'Chair',
+        note: '',
+        amount: 38000,
+        createdAt: 12000
+    };
+
+    store.dispatch(startAddExpense(expense)).then(() => {
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type: 'ADD_EXPENSE',
+            expense: {
+                id: expect.any(String),
+                ...expense
+            }
+        });
+
+        return database.ref(`expenses/${actions[0].expense.id}`).once('value');
+    }).then((snapshot) => {
+        expect(snapshot.val()).toEqual(expense);
+        done();
+        });
+});
+
+test('Should add expense with defaults to database and store', (done) => {
+    const store = createMockStore({});
+    const expenseDefaults = {
+        description: '',
+        note: '',
+        amount: 0,
+        createdAt: 0 
+    };
+
+    store.dispatch(startAddExpense({})).then(() => {
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type: 'ADD_EXPENSE',
+            expense: {
+                id: expect.any(String),
+                ...expenseDefaults
+            }
+        });
+
+        return database.ref(`expenses/${actions[0].expense.id}`).once('value');
+    }).then((snapshot) => {
+        expect(snapshot.val()).toEqual(expenseDefaults);
+        done();
+        });
 });
 
 test('Should setup remove expense action object', () => {

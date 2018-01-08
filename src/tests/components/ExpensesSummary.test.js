@@ -1,24 +1,16 @@
+import React from 'react';
+import {shallow} from 'enzyme';
 import {ExpensesSummary} from '../../components/ExpensesSummary';
-import expenses from '../fixtures/testExpenses';
-import {filters} from '../fixtures/testFilters';
 
 // --- Jest Notes ---
-//
+// NA
 
-test('Should render ExpensesSummary with one expense', () => {
-    const props = {
-        expenses: [expenses[0]],
-        filters
-    };
-    const res = ExpensesSummary(props);
-    expect(res).toMatchSnapshot();
+test('Should render ExpensesSummary with one expense', () => {    
+    const wrapper = shallow(<ExpensesSummary expenseCount={1} expenseTotal={235} />);
+    expect(wrapper).toMatchSnapshot();
 });
 
 test('Should render ExpensesSummary with expenses', () => {
-    const props = {
-        expenses,
-        filters
-    };
-    const res = ExpensesSummary(props);
-    expect(res).toMatchSnapshot();
+    const wrapper = shallow(<ExpensesSummary expenseCount={3} expenseTotal={73580} />);
+    expect(wrapper).toMatchSnapshot();
 });
