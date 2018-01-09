@@ -36,8 +36,8 @@ const mapStateToProps = (state, props) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditExpensePage);
 
-// We use mapStateToProps to get access to the current state of the expenses array, access provided by the (HOC) connect.
-// React-Router renders the (HOC) thus providing acces to a bunch of other props, such as match.
-// We use match to match the id of an expense in the expenses array to the id in the browser url, then return that expense.
-// Then we pass the return value of mapStateToProps into EditExpensePage, allowing it to populate the expenseForm with
-// the expense which we are wanting to edit.
+// mapStateToProps is used to get access to the current state of the expenses array, access provided by the (HOC) connect.
+// React-Router renders the (HOC) thus providing access to a bunch of other props, such as match.
+// match is then used to match the id of an expense in the expenses array to the id in the browser url, then return that expense.
+// Then the return value of mapStateToProps is passed into EditExpensePage, allowing it to populate the expenseForm with
+// the expense in which the user is wanting to edit.
