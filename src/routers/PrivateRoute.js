@@ -31,5 +31,5 @@ export default connect(mapStateToProps)(PrivateRoute);
 // ...rest is used to spread out the rest of the props. This could be named anything such as ...props or ...restOfThem.
 // Doing it this way prevents isAuthenticated from being blindly passed down into Route.
 // Since PrivateRoute renders Route, when a component is accessed it determines if the user is Authenticated before displaying it.
-// If the user is authenticated, the full props are passed in, else they get redirected to the home page if they visit
-// a page in which they do not have access to.
+// If the user is authenticated, then the component is rendered. Otherwise they get redirected to the home page if they visit
+// a page in which they do not have access to. The props passed into component come from React-Router and contain history, match, etc.
