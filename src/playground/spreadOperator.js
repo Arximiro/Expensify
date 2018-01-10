@@ -21,10 +21,10 @@ const user = {
     age: 32
 };
 
-console.log({...user}); // Returns {name: "David", age: 32}
-console.log({...user, location: 'Columbus'}); // Returns {name: "David", age: 32, location: "Columbus"} Appending new property location
-console.log({...user, location: 'Columbus', age: 33}); // Returns {name: "David", age: 33, location: "Columbus"} Overwriting age
-console.log({age: 25, ...user, location: 'Columbus'}); // Returns {age: 32, name: "David", location: "Columbus"} Age gets overwritten by the spread doing it this way
+console.log({ ...user }); // Returns {name: "David", age: 32}
+console.log({ ...user, location: 'Columbus' }); // Returns {name: "David", age: 32, location: "Columbus"} Appending new property location
+console.log({ ...user, location: 'Columbus', age: 33 }); // Returns {name: "David", age: 33, location: "Columbus"} Overwriting age
+console.log({ age: 25, ...user, location: 'Columbus' }); // Returns {age: 32, name: "David", location: "Columbus"} Age gets overwritten by the spread doing it this way
 
 const user2 = {
     ...user,
@@ -32,8 +32,8 @@ const user2 = {
     vehicle: 'Civic'
 };
 
-console.log({...user2}); // Returns {name: "David", age: 32, location: "Columbus", vehicle: "Civic"}
-console.log({...user}); // Returns {name: "David", age: 32} - Demonstrating that we can use this to create new objects without altering the initial object.
+console.log({ ...user2 }); // Returns {name: "David", age: 32, location: "Columbus", vehicle: "Civic"}
+console.log({ ...user }); // Returns {name: "David", age: 32} - Demonstrating that we can use this to create new objects without altering the initial object.
 
 const newProps = {
     name: 'David Ridgley',

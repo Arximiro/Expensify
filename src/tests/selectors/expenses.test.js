@@ -35,7 +35,7 @@ test('Should filter by end date', () => {
         endDate: moment(0).add(2, 'days')
     };
     const result = selectExpenses(expenses, filters);
-    expect(result).toEqual([ expenses[1], expenses[0] ]);
+    expect(result).toEqual([expenses[1], expenses[0]]);
 });
 
 test('Should sort by date', () => {
@@ -46,7 +46,7 @@ test('Should sort by date', () => {
         endDate: undefined
     };
     const result = selectExpenses(expenses, filters);
-    expect(result).toEqual([expenses[2], expenses[1], expenses[0] ]);
+    expect(result).toEqual([expenses[2], expenses[1], expenses[0]]);
 });
 
 test('Should sort by amount', () => {
@@ -57,5 +57,5 @@ test('Should sort by amount', () => {
         endDate: undefined
     };
     const result = selectExpenses(expenses, filters);
-    expect(result).toEqual([expenses[1], expenses[0], expenses[2] ]);
+    expect(result).toEqual([expenses[1], expenses[0], expenses[2]]);
 });

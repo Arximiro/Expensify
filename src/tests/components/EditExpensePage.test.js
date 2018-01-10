@@ -1,6 +1,6 @@
 import React from 'react';
-import {shallow} from 'enzyme';
-import {EditExpensePage} from '../../components/EditExpensePage';
+import { shallow } from 'enzyme';
+import { EditExpensePage } from '../../components/EditExpensePage';
 import expenses from '../fixtures/testExpenses';
 
 // --- Jest Notes ---
@@ -11,7 +11,7 @@ let startEditExpense, startRemoveExpense, history, expense, wrapper;
 beforeEach(() => {
     startEditExpense = jest.fn();
     startRemoveExpense = jest.fn();
-    history = {push: jest.fn()};
+    history = { push: jest.fn() };
     expense = expenses[0];
     wrapper = shallow(
         <EditExpensePage

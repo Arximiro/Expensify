@@ -10,12 +10,12 @@ const person = {
     }
 };
 
-const {name = 'anonymous', age} = person; // Destructures object, pulling off name and age. Sets name default to anonymous which is used if no name exists on the object.
+const { name = 'anonymous', age } = person; // Destructures object, pulling off name and age. Sets name default to anonymous which is used if no name exists on the object.
 console.log(`${name} is ${age}.`); // Returns David is 32. If no name is in the exists returns anonymous is 32.
 
 
-const {city, temp: temperature} = person.location; // Renames temp to temperature during destructuring.
-if(city && temperature) console.log(`It's ${temperature} in ${city}.`); // Returns It's 30 in Columbus, if City AND Temperature both exist.
+const { city, temp: temperature } = person.location; // Renames temp to temperature during destructuring.
+if (city && temperature) console.log(`It's ${temperature} in ${city}.`); // Returns It's 30 in Columbus, if City AND Temperature both exist.
 
 const book = {
     title: 'Ego is the Enemy',
@@ -25,7 +25,7 @@ const book = {
     }
 };
 
-const {name: publisherName = 'Self-Published'} = book.publisher; // Renames name property to PublisherName, and sets default to Self-Published if no names exists.
+const { name: publisherName = 'Self-Published' } = book.publisher; // Renames name property to PublisherName, and sets default to Self-Published if no names exists.
 
 console.log(publisherName); // Returns Penguin
 

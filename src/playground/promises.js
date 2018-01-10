@@ -10,7 +10,7 @@ const promise = new Promise((resolve, reject) => {
             age: 32
         });
         reject('Error Message');
-    }, 3000);    
+    }, 3000);
 });
 //---------------------------------------------------------------
 
@@ -31,7 +31,7 @@ promise.then((data) => {
         setTimeout(() => {
             resolve('Super cool message.');
             reject('Error Message');
-        }, 3000);    
+        }, 3000);
     });
 }).then((data) => {
     console.log('2nd Promise Resolved: ', data);

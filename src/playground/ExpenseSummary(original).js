@@ -1,10 +1,10 @@
 import React from 'react';
 import numeral from 'numeral';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import selectExpensesTotal from '../selectors/expenses-total';
 import selectVisibleExpenses from '../selectors/expenses';
 
-export const ExpensesSummary = ({expenses, filters}) => {
+export const ExpensesSummary = ({ expenses, filters }) => {
     if (expenses.length > 0) {
         const visibleExpenses = selectVisibleExpenses(expenses, filters);
         const count = visibleExpenses.length;
@@ -19,11 +19,11 @@ export const ExpensesSummary = ({expenses, filters}) => {
     } else {
         return (
             <p></p>
-        );        
-    }    
+        );
+    }
 };
 
-const mapStateToProps = (state) => ({expenses: state.expenses, filters: state.filters});
+const mapStateToProps = (state) => ({ expenses: state.expenses, filters: state.filters });
 
 export default connect(mapStateToProps)(ExpensesSummary);
 

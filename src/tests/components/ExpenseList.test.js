@@ -1,6 +1,6 @@
 import React from 'react';
-import {shallow} from 'enzyme';
-import {ExpenseList} from '../../components/ExpenseList';
+import { shallow } from 'enzyme';
+import { ExpenseList } from '../../components/ExpenseList';
 import expenses from '../fixtures/testExpenses';
 
 // --- Jest Notes ---
@@ -12,6 +12,6 @@ test('Should render ExpenseList with expenses', () => {
 });
 
 test('Should render message if no expenses', () => {
-    const wrapper = shallow(<ExpenseList expenses={[]}/>);
+    const wrapper = shallow(<ExpenseList expenses={[]} />);
     expect(wrapper).toMatchSnapshot();
 });

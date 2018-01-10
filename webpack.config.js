@@ -5,9 +5,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 if (process.env.NODE_ENV === 'test') {
-    require('dotenv').config({path: '.env.test'});
+    require('dotenv').config({ path: '.env.test' });
 } else if (process.env.NODE_ENV === 'development') {
-    require('dotenv').config({path: '.env.development'});
+    require('dotenv').config({ path: '.env.development' });
 }
 
 module.exports = (env) => {
@@ -15,35 +15,35 @@ module.exports = (env) => {
     const CSSExtract = new ExtractTextPlugin('styles.css');
 
     return {
-        entry: './src/app.js',
+        entry: ['babel-polyfill', './src/app.js'],
         output: {
             path: path.join(__dirname, 'public', 'dist'),
             filename: 'bundle.js'
         },
         module: {
-           rules: [{
-               loader: 'babel-loader',
-               test: /\.js$/,            // This filters only files that end in .js. the \ is an escape character so we can use the . before js.
-               exclude: /node_modules/
-           },{
-               test: /\.s?css$/,  // The ? makes the s optional so it supports both scss and css. The $ means that it needs to be at the end of the filename.
-               use: CSSExtract.extract({
-                  use: [
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: true
+            rules: [{
+                loader: 'babel-loader',
+                test: /\.js$/,            // This filters only files that end in .js. the \ is an escape character so we can use the . before js.
+                exclude: /node_modules/
+            }, {
+                test: /\.s?css$/,  // The ? makes the s optional so it supports both scss and css. The $ means that it needs to be at the end of the filename.
+                use: CSSExtract.extract({
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: true
+                            }
                         }
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            sourceMap: true
-                        }
-                    }                        
-                  ] 
-               })
-           }]
+                    ]
+                })
+            }]
         },
         plugins: [
             CSSExtract,
@@ -61,6 +61,6 @@ module.exports = (env) => {
             contentBase: path.join(__dirname, 'public'),
             historyApiFallback: true,
             publicPath: '/dist/'
-        }    
+        }
     };
 };

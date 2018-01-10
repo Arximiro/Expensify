@@ -24,13 +24,13 @@ import expenses from '../fixtures/testExpenses';
 // Redux-Thunk is used to returns fucntions from dispatch instead of objects. It's needed for Async calls.
 
 const uid = 'testuid';
-const testState = {auth: {uid}};
+const testState = { auth: { uid } };
 const createMockStore = configureMockStore([thunk]);
 
 beforeEach((done) => {
     const expensesData = {};
-    expenses.forEach(({id, description, note, amount, createdAt}) => {
-        expensesData[id] = {description, note, amount, createdAt};
+    expenses.forEach(({ id, description, note, amount, createdAt }) => {
+        expensesData[id] = { description, note, amount, createdAt };
     });
     database.ref(`users/${uid}/expenses`).set(expensesData).then(() => done());
 });
@@ -57,7 +57,7 @@ test('Should setup set expense action object with data', () => {
 });
 
 test('Should setup edit expense action object', () => {
-    const action = editExpense('10', {description: 'Car Payment'});
+    const action = editExpense('10', { description: 'Car Payment' });
     expect(action).toEqual({
         type: 'EDIT_EXPENSE',
         id: '10',
@@ -93,7 +93,7 @@ test('Should add expense with defaults to database and store', (done) => {
         description: '',
         note: '',
         amount: 0,
-        createdAt: 0 
+        createdAt: 0
     };
 
     store.dispatch(startAddExpense({})).then(() => {
@@ -110,7 +110,7 @@ test('Should add expense with defaults to database and store', (done) => {
     }).then((snapshot) => {
         expect(snapshot.val()).toEqual(expenseDefaults);
         done();
-        });
+    });
 });
 
 test('Should add expense to database and store', (done) => {
@@ -136,7 +136,7 @@ test('Should add expense to database and store', (done) => {
     }).then((snapshot) => {
         expect(snapshot.val()).toEqual(expense);
         done();
-        });
+    });
 });
 
 test('Should fetch expenses from Firebase', (done) => {
@@ -147,7 +147,7 @@ test('Should fetch expenses from Firebase', (done) => {
         expect(actions[0]).toEqual({
             type: 'SET_EXPENSES',
             expenses
-        });      
+        });
     });
     done()
 });
@@ -155,7 +155,7 @@ test('Should fetch expenses from Firebase', (done) => {
 test('Should edit expense in Firebase', (done) => {
     const store = createMockStore(testState);
     const id = expenses[1].id;
-    const updates = {description: 'Car Payment'};
+    const updates = { description: 'Car Payment' };
 
     store.dispatch(startEditExpense(id, updates)).then(() => {
         const actions = store.getActions();

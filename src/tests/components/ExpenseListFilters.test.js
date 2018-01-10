@@ -1,9 +1,9 @@
 import React from 'react';
 import moment from 'moment';
-import {shallow} from 'enzyme';
-import {DateRangePicker} from 'react-dates';
-import {ExpenseListFilters} from '../../components/ExpenseListFilters';
-import {filters, altFilters} from '../fixtures/testFilters';
+import { shallow } from 'enzyme';
+import { DateRangePicker } from 'react-dates';
+import { ExpenseListFilters } from '../../components/ExpenseListFilters';
+import { filters, altFilters } from '../fixtures/testFilters';
 
 // --- Jest Notes ---
 //
@@ -36,7 +36,7 @@ test('Should render ExpenseListFilters', () => {
 });
 
 test('Should render ExpenseListFilters with alt data', () => {
-    wrapper.setProps({filters: altFilters});
+    wrapper.setProps({ filters: altFilters });
     expect(wrapper).toMatchSnapshot();
 });
 
@@ -51,29 +51,29 @@ test('Should set date range', () => {
 });
 
 test('Should set calendarFocused', () => {
-    const calendarFocused = 'endDate'    
+    const calendarFocused = 'endDate'
     wrapper.find(DateRangePicker).prop('onFocusChange')(calendarFocused);
     expect(wrapper.state('calendarFocused')).toBe(calendarFocused)
 });
 
 test('Should handle text change', () => {
     const value = 'Test Text';
-    const targetObject = {target: {value}};
+    const targetObject = { target: { value } };
     wrapper.find('input').simulate('change', targetObject);
     expect(setTextFilter).toHaveBeenLastCalledWith(value)
 });
 
 test('Should sort by date', () => {
-    wrapper.setProps({filters: altFilters});
+    wrapper.setProps({ filters: altFilters });
     const value = 'date';
-    const targetObject = {target: {value}};
-    wrapper.find('select').simulate('change', targetObject )
+    const targetObject = { target: { value } };
+    wrapper.find('select').simulate('change', targetObject)
     expect(sortByDate).toHaveBeenCalled();
 });
 
 test('Should sort by amount', () => {
     const value = 'amount';
-    const targetObject = {target: {value}};
-    wrapper.find('select').simulate('change', targetObject )
+    const targetObject = { target: { value } };
+    wrapper.find('select').simulate('change', targetObject)
     expect(sortByAmount).toHaveBeenCalled();
 });

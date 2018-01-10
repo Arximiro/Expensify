@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
-import AppRouter, {history} from './routers/AppRouter';
+import { Provider } from 'react-redux';
+import { firebase } from './firebase/firebase';
+import { login, logout, startLogout } from './actions/auth';
+import { startSetExpenses } from './actions/expenses';
+import AppRouter, { history } from './routers/AppRouter';
+import LoadingPage from './components/LoadingPage';
 import store from './store/configureStore';
-import {startSetExpenses} from './actions/expenses';
-import {login, logout, startLogout} from './actions/auth';
 import getVisibleExpenses from './selectors/expenses';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css'
-import {firebase} from './firebase/firebase';
+import 'react-dates/lib/css/_datepicker.css';
 
 
 const jsx = (
@@ -27,7 +28,7 @@ const renderApp = () => {
     }
 };
 
-ReactDOM.render(<p>Loading...</p>, app);
+ReactDOM.render(<LoadingPage />, app);
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -37,7 +38,7 @@ firebase.auth().onAuthStateChanged((user) => {
             if (history.location.pathname === '/') {
                 history.push('/dashboard');
             }
-        });        
+        });
     } else {
         store.dispatch(logout());
         renderApp();
@@ -47,7 +48,7 @@ firebase.auth().onAuthStateChanged((user) => {
 
 
 // --- Notes ---
-// Provider is used for Redux taking the store in as a prop. Then it renders the AppRouter, which renders all of our component pages.
+// The Provider component wraps the entire application and passes the store down to all children.
 // renderApp() keeps track of if the app has been rendered yet, so it is not re-rendered every time a user logs in or out.
 // In the Firebase if statement, if a user is authenticated, the expenses are dispatched, then renderApp() runs checking if the app has already been rendered.
 // If the user is on the login page, they are redirected to the dashboard page, which will have all the expenses for that user.

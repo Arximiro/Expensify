@@ -1,0 +1,20 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    > * {
+        margin-bottom: $m-size;
+    }
+    // > * targets all direct children of form. Meaning not children of children.
+}
+
+.form__error {
+    margin: 0 0 $m-size 0;
+    font-weight: bold;
+    font-style: italic;
+    color: rgb(233, 88, 88);
+}
+
+.form__date-button {
+    display: flex;
+    justify-content: space-between;
+}

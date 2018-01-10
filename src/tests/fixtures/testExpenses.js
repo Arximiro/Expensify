@@ -11,7 +11,7 @@ const expenses = [{
     description: 'Car',
     note: 'Civic',
     amount: 50800,
-    createdAt: moment(0).add(1,'days').valueOf()
+    createdAt: moment(0).add(1, 'days').valueOf()
 
 }, {
     id: '3',

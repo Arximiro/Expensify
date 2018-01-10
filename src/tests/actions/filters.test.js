@@ -1,5 +1,5 @@
 import moment from 'moment';
-import {setTextFilter, sortByAmount, sortByDate, setStartDate, setEndDate} from '../../actions/filters';
+import { setTextFilter, sortByAmount, sortByDate, setStartDate, setEndDate } from '../../actions/filters';
 
 // -- Jest Notes --
 // NA
@@ -21,11 +21,11 @@ test('Should set text filter default if no value provided', () => {
 });
 
 test('Should set sort by amount', () => {
-    expect(sortByAmount()).toEqual({type: 'SORT_BY_AMOUNT'});
+    expect(sortByAmount()).toEqual({ type: 'SORT_BY_AMOUNT' });
 });
 
 test('Should set sort by date', () => {
-    expect(sortByDate()).toEqual({type: 'SORT_BY_DATE'});
+    expect(sortByDate()).toEqual({ type: 'SORT_BY_DATE' });
 });
 
 test('Should generate set start date action object', () => {
