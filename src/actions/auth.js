@@ -1,4 +1,4 @@
-import { firebase, googleAuthProvider } from '../firebase/firebase';
+import { firebase, googleAuthProvider, gitAuthProvider } from '../firebase/firebase';
 
 export const login = (uid) => ({
     type: 'LOGIN',
@@ -7,7 +7,19 @@ export const login = (uid) => ({
 
 export const startLogin = () => {
     return () => {
-        return firebase.auth().signInWithPopup(googleAuthProvider)
+        return firebase.auth().signInWithRedirect(googleAuthProvider);
+    };
+};
+
+export const startLoginGit = () => {
+    return () => {
+        return firebase.auth().signInWithRedirect(gitAuthProvider);
+    };
+};
+
+export const startLoginAnon = () => {
+    return () => {
+        return firebase.auth().signInAnonymously();
     };
 };
 

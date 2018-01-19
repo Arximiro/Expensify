@@ -7,8 +7,13 @@
     font-size: $font-size-large;
     font-weight: 300;
     line-height: 1;
+    margin-bottom: $s-size;
     padding: $s-size;
     text-decoration: none;
+    @media (min-width: $desktop-breakpoint) {        
+        margin-right: $s-size;
+        margin-bottom: none;
+    }
 }
 
 .button--link {
